@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-from urllib.parse import urljoin
+from urllib.parse import urljoin, urlparse
 from src.database_manager import DatabaseManager
 import time
 
@@ -11,10 +11,12 @@ class BSHScraper:
         }
         self.db = DatabaseManager()
         self.db.create_tables()
-        self.base_url = "https://www.bosch-home.com.tr"
 
     def get_product_links(self, category_url):
         links = []
+        parsed_uri = urlparse(category_url)
+        base_url = f"{parsed_uri.scheme}://{parsed_uri.netloc}"
+        
         try:
             response = requests.get(category_url, headers=self.headers)
             response.raise_for_status()
@@ -22,15 +24,13 @@ class BSHScraper:
             
             for a_tag in soup.find_all("a", href=True):
                 href = a_tag["href"]
-                # Sadece içinde /product/ geçen ürün detay sayfası linklerini alıyoruz
                 if "/product/" in href:
-                    full_url = urljoin(self.base_url, href)
+                    full_url = urljoin(base_url, href)
                     if full_url not in links:
                         links.append(full_url)
         except Exception as e:
             print(f"Link toplama hatası: {e}")
         return list(set(links))
-            
 
     def scrape_product_detail(self, url, brand, category):
         try:
@@ -72,8 +72,3 @@ class BSHScraper:
         for link in links:
             self.scrape_product_detail(link, brand, category)
             time.sleep(1)
-
-if __name__ == "__main__":
-    scraper = BSHScraper()
-    test_url = "https://www.bosch-home.com.tr/urun-listesi/camasir-ve-kurutma-makineleri/camasir-makineleri"
-    scraper.run(test_url, "Bosch", "Çamaşır Makinesi")
