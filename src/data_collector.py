@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
-from database_manager import DatabaseManager
+from src.database_manager import DatabaseManager
 import time
 
 class BSHScraper:
@@ -22,13 +22,15 @@ class BSHScraper:
             
             for a_tag in soup.find_all("a", href=True):
                 href = a_tag["href"]
-                if "/product/" in href or "urun-listesi" in href and "WNC" in href or "WGA" in href or "-tr/" in href:
+                # Sadece içinde /product/ geçen ürün detay sayfası linklerini alıyoruz
+                if "/product/" in href:
                     full_url = urljoin(self.base_url, href)
                     if full_url not in links:
                         links.append(full_url)
         except Exception as e:
             print(f"Link toplama hatası: {e}")
         return list(set(links))
+            
 
     def scrape_product_detail(self, url, brand, category):
         try:
