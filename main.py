@@ -5,9 +5,7 @@ import time
 def main():
     scraper = BSHScraper()
     
-    # BSH (Bosch & Siemens) için çekilecek tüm kategoriler ve web adresleri
     bsh_categories = [
-        # --- BOSCH ---
         {
             "brand": "Bosch",
             "category": "Çamaşır Makinesi",
@@ -28,8 +26,6 @@ def main():
             "category": "Klima",
             "url": "https://www.bosch-home.com.tr/urun-listesi/klima-ve-ev-konforu/klimalar"
         },
-        
-        # --- SIEMENS ---
         {
             "brand": "Siemens",
             "category": "Çamaşır Makinesi",
@@ -38,12 +34,12 @@ def main():
         {
             "brand": "Siemens",
             "category": "Bulaşık Makinesi",
-            "url": "https://www.siemens-home.bsh-group.com/tr/tr/category/buzdolaplari-ve-derin-dondurucular/ankastre-buzdolaplari-ve-derin-dondurucular"
+            "url": "https://www.siemens-home.bsh-group.com/tr/urun-listesi/bulasik-makineleri"
         },
         {
             "brand": "Siemens",
             "category": "Buzdolabı",
-            "url": "https://www.siemens-home.bsh-group.com/tr/urun-listesi/buzdolaplari-ve-derin-dondurucular/alttan-donduruculu-buzdolaplari"
+            "url": "https://www.siemens-home.bsh-group.com/tr/tr/category/buzdolaplari-ve-derin-dondurucular/ankastre-buzdolaplari-ve-derin-dondurucular"
         },
         {
             "brand": "Siemens",
