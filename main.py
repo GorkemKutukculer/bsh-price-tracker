@@ -36,10 +36,12 @@ def main():
             "category": "Bulaşık Makinesi",
             "url": "https://www.siemens-home.bsh-group.com/tr/urun-listesi/bulasik-makineleri"
         },
-        {
+        
+       {
             "brand": "Siemens",
             "category": "Buzdolabı",
             "url": "https://www.siemens-home.bsh-group.com/tr/tr/category/buzdolaplari-ve-derin-dondurucular/ankastre-buzdolaplari-ve-derin-dondurucular"
+        
         },
         {
             "brand": "Siemens",
