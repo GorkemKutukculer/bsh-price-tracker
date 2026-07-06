@@ -49,3 +49,6 @@ bsh-price-tracker/
 │
 ├── main.py                           # Application entry point & Category configs
 └── README.md                         # Project documentation
+
+## 📊 Power BI Executive Dashboard
+![BSH Pricing Dashboard](bsh_powerbi_report.png)
